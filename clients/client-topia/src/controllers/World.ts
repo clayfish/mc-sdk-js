@@ -1,19 +1,19 @@
-import { AxiosResponse } from "axios";
+import {AxiosResponse} from "axios";
 
 // controllers
-import { DroppedAsset } from "controllers/DroppedAsset";
-import { SDKController } from "controllers/SDKController";
-import { Topia } from "controllers/Topia";
-import { Visitor } from "controllers/Visitor";
+import {DroppedAsset} from "controllers/DroppedAsset";
+import {SDKController} from "controllers/SDKController";
+import {Topia} from "controllers/Topia";
+import {Visitor} from "controllers/Visitor";
 
 // interfaces
-import { MoveAllVisitorsInterface, WorldInterface, WorldOptionalInterface } from "interfaces";
+import {MoveAllVisitorsInterface, WorldInterface, WorldOptionalInterface} from "interfaces";
 
 // types
-import { ResponseType, VisitorsToMoveArrayType } from "types";
+import {ResponseType, VisitorsToMoveArrayType} from "types";
 
 // utils
-import { removeUndefined, scatterVisitors } from "utils";
+import {removeUndefined, scatterVisitors} from "utils";
 
 /**
  * @summary
@@ -195,8 +195,7 @@ export class World extends SDKController implements WorldInterface {
         }),
       ),
     );
-    const outcomes = await Promise.all(allPromises);
-    return outcomes;
+    return Promise.all(allPromises);
   }
 
   /**
@@ -229,8 +228,7 @@ export class World extends SDKController implements WorldInterface {
     visitorsToMove.forEach((v) => {
       allPromises.push(v.visitorObj.moveVisitor({ shouldTeleportVisitor: v.shouldTeleportVisitor, x: v.x, y: v.y }));
     });
-    const outcomes = await Promise.all(allPromises);
-    return outcomes;
+    return Promise.all(allPromises);
   }
 
   /**
@@ -289,8 +287,7 @@ export class World extends SDKController implements WorldInterface {
     droppedAssetsToUpdate.forEach((a) => {
       allPromises.push(a.updateCustomTextAsset(style, a.text));
     });
-    const outcomes = await Promise.all(allPromises);
-    return outcomes;
+    return Promise.all(allPromises);
   }
 
   /**
